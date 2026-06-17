@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as InvestigationsRouteImport } from './routes/investigations'
+import { Route as GhostsRouteImport } from './routes/ghosts'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CapturedRouteImport } from './routes/captured'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestigationsRoute = InvestigationsRouteImport.update({
+  id: '/investigations',
+  path: '/investigations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GhostsRoute = GhostsRouteImport.update({
+  id: '/ghosts',
+  path: '/ghosts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapturedRoute = CapturedRouteImport.update({
+  id: '/captured',
+  path: '/captured',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/captured': typeof CapturedRoute
+  '/contact': typeof ContactRoute
+  '/ghosts': typeof GhostsRoute
+  '/investigations': typeof InvestigationsRoute
+  '/locations': typeof LocationsRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/captured': typeof CapturedRoute
+  '/contact': typeof ContactRoute
+  '/ghosts': typeof GhostsRoute
+  '/investigations': typeof InvestigationsRoute
+  '/locations': typeof LocationsRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/captured': typeof CapturedRoute
+  '/contact': typeof ContactRoute
+  '/ghosts': typeof GhostsRoute
+  '/investigations': typeof InvestigationsRoute
+  '/locations': typeof LocationsRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/captured'
+    | '/contact'
+    | '/ghosts'
+    | '/investigations'
+    | '/locations'
+    | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/captured'
+    | '/contact'
+    | '/ghosts'
+    | '/investigations'
+    | '/locations'
+    | '/team'
+  id:
+    | '__root__'
+    | '/'
+    | '/captured'
+    | '/contact'
+    | '/ghosts'
+    | '/investigations'
+    | '/locations'
+    | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CapturedRoute: typeof CapturedRoute
+  ContactRoute: typeof ContactRoute
+  GhostsRoute: typeof GhostsRoute
+  InvestigationsRoute: typeof InvestigationsRoute
+  LocationsRoute: typeof LocationsRoute
+  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investigations': {
+      id: '/investigations'
+      path: '/investigations'
+      fullPath: '/investigations'
+      preLoaderRoute: typeof InvestigationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ghosts': {
+      id: '/ghosts'
+      path: '/ghosts'
+      fullPath: '/ghosts'
+      preLoaderRoute: typeof GhostsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/captured': {
+      id: '/captured'
+      path: '/captured'
+      fullPath: '/captured'
+      preLoaderRoute: typeof CapturedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CapturedRoute: CapturedRoute,
+  ContactRoute: ContactRoute,
+  GhostsRoute: GhostsRoute,
+  InvestigationsRoute: InvestigationsRoute,
+  LocationsRoute: LocationsRoute,
+  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
